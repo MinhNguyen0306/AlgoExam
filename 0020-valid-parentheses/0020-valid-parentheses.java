@@ -9,8 +9,8 @@ class Solution {
                 stack.push(')');
             } else if(c == '{') {
                 stack.push('}');
-            } else {
-                if(stack.empty() || c != stack.pop() ) return false;
+            } else if(stack.empty() || c != stack.pop()) {
+                return false;
             }
         }
         return stack.empty();
