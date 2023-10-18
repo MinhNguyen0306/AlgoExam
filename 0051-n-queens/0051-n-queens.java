@@ -5,12 +5,12 @@ class Solution {
     }
     
     private List<Integer> getValidPlaces(List<Integer> currentCase, int n) {
-        List<Integer> currentRow = new ArrayList<>(n);
+        LinkedList<Integer> currentRow = new LinkedList<Integer>();
         for(int i = 0; i < n; i++) {
             currentRow.add(i);
         }
         
-        if(currentCase.size() == 0 || currentCase.isEmpty()) {
+        if(currentCase.isEmpty()) {
             return currentRow;
         }
         
