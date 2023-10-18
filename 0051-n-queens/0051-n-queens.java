@@ -1,10 +1,10 @@
 class Solution {
-    private boolean isCaseValid(List<Integer> currentCase, int n) {
+    private boolean isCaseValid(Stack<Integer> currentCase, int n) {
         if(currentCase.size() == n) return true;
         return false;
     }
     
-    private List<Integer> getValidPlaces(List<Integer> currentCase, int n) {
+    private List<Integer> getValidPlaces(Stack<Integer> currentCase, int n) {
         List<Integer> currentRow = new ArrayList<>(n);
         for(int i = 0; i < n; i++) {
             currentRow.add(i);
@@ -30,7 +30,7 @@ class Solution {
         return currentRow;
     }
     
-    private List<String> getStringOfValidPlace(List<Integer> validPlace, int n) {
+    private List<String> getStringOfValidPlace(Stack<Integer> validPlace, int n) {
         List<String> tvs = new ArrayList<>(n);
         StringBuilder rowString = new StringBuilder();
     
@@ -48,7 +48,7 @@ class Solution {
         return tvs;
     }
     
-    private void placing(List<List<String>> res, List<Integer> currentCase, int n) {
+    private void placing(List<List<String>> res, Stack<Integer> currentCase, int n) {
         List<Integer> validPlaces = getValidPlaces(currentCase, n);
         List<String> validPlacesString = new ArrayList<>();
         
@@ -58,15 +58,16 @@ class Solution {
         }
         
         for(Integer i : validPlaces) {
-            currentCase.add(i);
+            currentCase.push(i);
             placing(res, currentCase, n);
-            currentCase.remove(Integer.valueOf(i));
+            currentCase.pop();
         }
     }
         
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
-        List<Integer> currentCase = new ArrayList<>();
+        // List<Integer> currentCase = new ArrayList<>();
+        Stack<Integer> currentCase = new Stack<>();
         placing(res, currentCase, n);
         return res;
     }
